@@ -8,6 +8,7 @@ import com.nageoffer.shortlink.admin.dto.req.UserUpdateReqDTO;
 import com.nageoffer.shortlink.admin.dto.resp.UserLoginRespDTO;
 import com.nageoffer.shortlink.admin.dto.resp.UserRespDTO;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /*
 * 用户接口层
@@ -52,4 +53,11 @@ public interface UserService extends IService<UserDO> {
     * @return 用户是否登录标识
     * */
     Boolean checkLogin(String username, String token);
+
+    /*
+    * 退出登录
+    * @param username 用户名
+    * @param token  用户登录Token
+    * */
+    void logout(String username, String token);
 }
