@@ -18,6 +18,6 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 
     @Override
     public void updateFill(MetaObject metaObject) {
-        strictInsertFill(metaObject, "updateTime", LocalDateTime::now, LocalDateTime.class);
+        strictInsertFill(metaObject, "updateTime", Date::new, Date.class);
     }
 }
