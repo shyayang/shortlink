@@ -86,7 +86,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, UserDO> implements 
             lock.unlock();
         }
     }
-
     @Override
     public void update(UserUpdateReqDTO requestParam) {
         // TODO 验证当前用户名是否为登录用户
