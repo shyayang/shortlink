@@ -1,6 +1,5 @@
 package com.nageoffer.shortlink.project.common.constant;
 
-
 /*
 * 短链接常量类
 * */
