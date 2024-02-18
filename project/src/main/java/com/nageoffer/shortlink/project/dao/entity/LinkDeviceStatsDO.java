@@ -10,14 +10,14 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /*
-* 浏览器统计监控实体
-* */
+ * 访问设备统计监控实体
+ * */
 @Data
-@TableName("t_link_browser_stats")
+@TableName("t_link_device_stats")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LinkBrowserStatsDO extends BaseDO {
+public class LinkDeviceStatsDO extends BaseDO {
 
     /**
      * id
@@ -45,7 +45,7 @@ public class LinkBrowserStatsDO extends BaseDO {
     private Integer cnt;
 
     /**
-     * 浏览器
+     * 访问设备
      */
-    private String browser;
+    private String device;
 }
