@@ -31,7 +31,7 @@ public interface LinkLocateStatsMapper extends BaseMapper<LinkLocateStatsDO> {
             "    province, " +
             "    SUM(cnt) AS cnt " +
             "FROM " +
-            "    t_link_locale_stats " +
+            "    t_link_Locate_stats " +
             "WHERE " +
             "    full_short_url = #{param.fullShortUrl} " +
             "    AND gid = #{param.gid} " +
@@ -47,7 +47,7 @@ public interface LinkLocateStatsMapper extends BaseMapper<LinkLocateStatsDO> {
             "    province, " +
             "    SUM(cnt) AS cnt " +
             "FROM " +
-            "    t_link_locale_stats " +
+            "    t_link_Locate_stats " +
             "WHERE " +
             "    gid = #{param.gid} " +
             "    AND date BETWEEN #{param.startDate} and #{param.endDate} " +

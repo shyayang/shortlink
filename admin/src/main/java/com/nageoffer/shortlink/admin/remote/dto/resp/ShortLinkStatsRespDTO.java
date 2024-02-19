@@ -1,14 +1,16 @@
-package com.nageoffer.shortlink.project.dto.resp;
+package com.nageoffer.shortlink.admin.remote.dto.resp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-/*
-* 短链接监控响应参数
-* */
+/**
+ * 短链接监控响应参数
+ */
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,7 +39,7 @@ public class ShortLinkStatsRespDTO {
     /**
      * 地区访问详情（仅国内）
      */
-    private List<ShortLinkStatsLocateCNRespDTO> LocateCnStats;
+    private List<ShortLinkStatsLocateCNRespDTO> localeCnStats;
 
     /**
      * 小时访问详情

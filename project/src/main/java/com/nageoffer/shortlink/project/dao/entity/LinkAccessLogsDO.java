@@ -32,9 +32,9 @@ public class LinkAccessLogsDO extends BaseDO {
      */
     private String gid;
 
-    /*
-    * 用户信息
-    * */
+    /**
+     * 用户信息
+     */
     private String user;
 
     /**
@@ -51,4 +51,19 @@ public class LinkAccessLogsDO extends BaseDO {
      * ip
      */
     private String ip;
+
+    /**
+     * 访问网络
+     */
+    private String network;
+
+    /**
+     * 访问设备
+     */
+    private String device;
+
+    /**
+     * 地区
+     */
+    private String locate;
 }

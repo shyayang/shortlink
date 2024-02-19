@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-/*
-* 操作系统统计访问实体
-* */
+/**
+ * 短链接今日统计实体
+ */
+@TableName("t_link_stats_today")
 @Data
-@TableName("t_link_os_stats")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LinkOsStatsDO extends BaseDO {
+public class LinkStatsTodayDO extends BaseDO {
 
     /**
      * id
@@ -25,14 +25,14 @@ public class LinkOsStatsDO extends BaseDO {
     private Long id;
 
     /**
-     * 完整短链接
-     */
-    private String fullShortUrl;
-
-    /**
      * 分组标识
      */
     private String gid;
+
+    /**
+     * 短链接
+     */
+    private String fullShortUrl;
 
     /**
      * 日期
@@ -40,12 +40,17 @@ public class LinkOsStatsDO extends BaseDO {
     private Date date;
 
     /**
-     * 访问量
+     * 今日pv
      */
-    private Integer cnt;
+    private Integer todayPv;
 
     /**
-     * 操作系统名称
+     * 今日uv
      */
-    private String os;
+    private Integer todayUv;
+
+    /**
+     * 今日ip数
+     */
+    private Integer todayUip;
 }

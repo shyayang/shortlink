@@ -94,20 +94,20 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                     daily.add(accessDailyRespDTO);
                 }));
         // 地区访问详情（仅国内）
-        List<ShortLinkStatsLocateCNRespDTO> localeCnStats = new ArrayList<>();
-        List<LinkLocateStatsDO> listedLocaleByShortLink = linkLocateStatsMapper.listLocateByShortLink(requestParam);
-        int localeCnSum = listedLocaleByShortLink.stream()
+        List<ShortLinkStatsLocateCNRespDTO> LocateCnStats = new ArrayList<>();
+        List<LinkLocateStatsDO> listedLocateByShortLink = linkLocateStatsMapper.listLocateByShortLink(requestParam);
+        int LocateCnSum = listedLocateByShortLink.stream()
                 .mapToInt(LinkLocateStatsDO::getCnt)
                 .sum();
-        listedLocaleByShortLink.forEach(each -> {
-            double ratio = (double) each.getCnt() / localeCnSum;
+        listedLocateByShortLink.forEach(each -> {
+            double ratio = (double) each.getCnt() / LocateCnSum;
             double actualRatio = Math.round(ratio * 100.0) / 100.0;
-            ShortLinkStatsLocateCNRespDTO localeCNRespDTO = ShortLinkStatsLocateCNRespDTO.builder()
+            ShortLinkStatsLocateCNRespDTO LocateCNRespDTO = ShortLinkStatsLocateCNRespDTO.builder()
                     .cnt(each.getCnt())
                     .locate(each.getProvince())
                     .ratio(actualRatio)
                     .build();
-            localeCnStats.add(localeCNRespDTO);
+            LocateCnStats.add(LocateCNRespDTO);
         });
         // 小时访问详情
         List<Integer> hourStats = new ArrayList<>();
@@ -244,7 +244,7 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .uv(pvUvUidStatsByShortLink.getUv())
                 .uip(pvUvUidStatsByShortLink.getUip())
                 .daily(daily)
-                .localeCnStats(localeCnStats)
+                .LocateCnStats(LocateCnStats)
                 .hourStats(hourStats)
                 .topIpStats(topIpStats)
                 .weekdayStats(weekdayStats)
@@ -290,20 +290,20 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                     daily.add(accessDailyRespDTO);
                 }));
         // 地区访问详情（仅国内）
-        List<ShortLinkStatsLocateCNRespDTO> localeCnStats = new ArrayList<>();
-        List<LinkLocateStatsDO> listedLocaleByGroup = linkLocateStatsMapper.listLocateByGroup(requestParam);
-        int localeCnSum = listedLocaleByGroup.stream()
+        List<ShortLinkStatsLocateCNRespDTO> LocateCnStats = new ArrayList<>();
+        List<LinkLocateStatsDO> listedLocateByGroup = linkLocateStatsMapper.listLocateByGroup(requestParam);
+        int LocateCnSum = listedLocateByGroup.stream()
                 .mapToInt(LinkLocateStatsDO::getCnt)
                 .sum();
-        listedLocaleByGroup.forEach(each -> {
-            double ratio = (double) each.getCnt() / localeCnSum;
+        listedLocateByGroup.forEach(each -> {
+            double ratio = (double) each.getCnt() / LocateCnSum;
             double actualRatio = Math.round(ratio * 100.0) / 100.0;
-            ShortLinkStatsLocateCNRespDTO localeCNRespDTO = ShortLinkStatsLocateCNRespDTO.builder()
+            ShortLinkStatsLocateCNRespDTO LocateCNRespDTO = ShortLinkStatsLocateCNRespDTO.builder()
                     .cnt(each.getCnt())
                     .locate(each.getProvince())
                     .ratio(actualRatio)
                     .build();
-            localeCnStats.add(localeCNRespDTO);
+            LocateCnStats.add(LocateCNRespDTO);
         });
         // 小时访问详情
         List<Integer> hourStats = new ArrayList<>();
@@ -408,7 +408,7 @@ public class ShortLinkStatsServiceImpl implements ShortLinkStatsService {
                 .uv(pvUvUidStatsByGroup.getUv())
                 .uip(pvUvUidStatsByGroup.getUip())
                 .daily(daily)
-                .localeCnStats(localeCnStats)
+                .LocateCnStats(LocateCnStats)
                 .hourStats(hourStats)
                 .topIpStats(topIpStats)
                 .weekdayStats(weekdayStats)
