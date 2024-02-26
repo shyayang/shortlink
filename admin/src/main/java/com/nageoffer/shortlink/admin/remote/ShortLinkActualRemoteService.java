@@ -181,4 +181,3 @@ public interface ShortLinkActualRemoteService {
                                                                                     @RequestParam("startDate") String startDate,
                                                                                     @RequestParam("endDate") String endDate);
 }
-
