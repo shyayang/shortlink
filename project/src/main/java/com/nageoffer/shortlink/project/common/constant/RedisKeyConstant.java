@@ -1,6 +1,6 @@
 package com.nageoffer.shortlink.project.common.constant;
 
-/*
+/**
 * Redis Key 常量类
 * */
 public class RedisKeyConstant {

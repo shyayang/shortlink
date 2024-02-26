@@ -245,7 +245,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 ShortLinkDO delShortLinkDO = ShortLinkDO.builder()
                         .delTime(System.currentTimeMillis())
                         .build();
-                delShortLinkDO.setDelFlag(1);
+                delShortLinkDO.setDelFlag(1);   // 短链接分组变更，先置delflag为1
                 baseMapper.update(delShortLinkDO, linkUpdateWrapper);
                 ShortLinkDO shortLinkDO = ShortLinkDO.builder()
                         .domain(createShortLinkDefaultDomain)
@@ -264,7 +264,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                         .favicon(getFavicon(requestParam.getOriginUrl()))
                         .delTime(0L)
                         .build();
-                baseMapper.insert(shortLinkDO);
+                baseMapper.insert(shortLinkDO);    // 再新增
                 LambdaQueryWrapper<LinkStatsTodayDO> statsTodayQueryWrapper = Wrappers.lambdaQuery(LinkStatsTodayDO.class)
                         .eq(LinkStatsTodayDO::getFullShortUrl, requestParam.getFullShortUrl())
                         .eq(LinkStatsTodayDO::getGid, hasShortLinkDO.getGid())
@@ -345,6 +345,7 @@ public class ShortLinkServiceImpl extends ServiceImpl<ShortLinkMapper, ShortLink
                 rLock.unlock();
             }
         }
+        // 清理已经过期的短链接数据
         if (!Objects.equals(hasShortLinkDO.getValidDateType(), requestParam.getValidDateType())
                 || !Objects.equals(hasShortLinkDO.getValidDate(), requestParam.getValidDate())) {
             stringRedisTemplate.delete(String.format(GOTO_SHORT_LINK_KEY, requestParam.getFullShortUrl()));
