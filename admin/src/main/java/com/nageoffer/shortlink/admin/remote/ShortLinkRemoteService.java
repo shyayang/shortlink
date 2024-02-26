@@ -8,10 +8,8 @@ import com.nageoffer.shortlink.admin.common.convention.result.Result;
 import com.nageoffer.shortlink.admin.dto.req.RecycleBinRecoverReqDTO;
 import com.nageoffer.shortlink.admin.dto.req.RecycleBinRemoveReqDTO;
 import com.nageoffer.shortlink.admin.dto.req.RecycleBinSaveReqDTO;
-import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkCreateReqDTO;
-import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkPageReqDTO;
-import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkRecycleBinPageReqDTO;
-import com.nageoffer.shortlink.admin.remote.dto.req.ShortLinkUpdateReqDTO;
+import com.nageoffer.shortlink.admin.remote.dto.req.*;
+import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkBatchCreateRespDTO;
 import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkCreateRespDTO;
 import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkGroupCountQueryRespDTO;
 import com.nageoffer.shortlink.admin.remote.dto.resp.ShortLinkPageRespDTO;
@@ -21,12 +19,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*
+/**
 * 短链接中台远程调用服务
 * */
 public interface ShortLinkRemoteService {
 
-    /*
+    /**
     * 创建短链接
     * @param requestParam 创建短链接请求参数
     * @return  短链接创建响应
@@ -37,7 +35,18 @@ public interface ShortLinkRemoteService {
         });
     }
 
-    /*
+    /**
+     * 批量创建短链接
+     * @param requestParam
+     * @return  短链接批量创建响应
+     */
+    default Result<ShortLinkBatchCreateRespDTO> bachCreateShortLink(ShortLinkBatchCreateReqDTO requestParam){
+        String resultBodyStr = HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/create/batch", JSON.toJSONString(requestParam));
+        return JSON.parseObject(resultBodyStr, new TypeReference<>() {
+        });
+    }
+
+    /**
      * 修改短链接
      * @param requestParam 修改短链接请求参数
      * @return  短链接修改响应
@@ -46,7 +55,7 @@ public interface ShortLinkRemoteService {
         HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/update", JSON.toJSONString(requestParam));
     }
 
-    /*
+    /**
      * 分页查询短链接
      * @param requestParam 分页短链接请求参数
      * @return  查询短链接响应
@@ -61,7 +70,7 @@ public interface ShortLinkRemoteService {
         });
     }
 
-    /*
+    /**
      * 查询分组短链接总量
      * @param requestParam 分组短链接总量请求参数
      * @return  查询分组短链接总量响应
@@ -80,7 +89,7 @@ public interface ShortLinkRemoteService {
         });
     }
 
-    /*
+    /**
      * 保存回收站
      * @param requestParam 请求参数
      * */
@@ -88,7 +97,7 @@ public interface ShortLinkRemoteService {
         HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/recycle-bin/save", JSON.toJSONString(requestParam));
     }
 
-    /*
+    /**
      * 分页查询回收站短链接
      * @param requestParam 分页短链接请求参数
      * @return  查询短链接响应
@@ -103,7 +112,7 @@ public interface ShortLinkRemoteService {
         });
     }
 
-    /*
+    /**
      * 恢复短链接
      * @param requestParam 短链接恢复请求参数
      * */
@@ -111,7 +120,7 @@ public interface ShortLinkRemoteService {
         HttpUtil.post("http://127.0.0.1:8001/api/short-link/v1/recycle-bin/recover", JSON.toJSONString(requestParam));
     }
 
-    /*
+    /**
      * 移除短链接
      * @param requestParam 短链接移除请求参数
      * */
