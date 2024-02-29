@@ -14,13 +14,13 @@ import com.nageoffer.shortlink.admin.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-/*
+/**
 * 用户管理控制层
 */
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-    /*
+    /**
     * 根据用户名查询用户信息
     * */
     private final UserService userService;
@@ -35,7 +35,7 @@ public class UserController {
         return Results.success(userService.getUserByUsername(username));
     }
 
-    /*
+    /**
      * 根据用户名查询用户无脱敏信息
      * */
     @GetMapping("/api/short-link/admin/v1/actual/user/{username}")
@@ -43,7 +43,7 @@ public class UserController {
         return Results.success(BeanUtil.toBean(userService.getUserByUsername(username), UserActualRespDTO.class));
     }
 
-    /*
+    /**
     * 查询用户名是否存在
     * */
     @GetMapping("/api/short-link/admin/v1/user/has-username")
@@ -51,7 +51,7 @@ public class UserController {
         return Results.success(userService.hasUsername(username));
     }
 
-    /*
+    /**
     * 注册用户
     * */
     @PostMapping("/api/short-link/admin/v1/user")
@@ -60,7 +60,7 @@ public class UserController {
         return Results.success();
     }
 
-    /*
+    /**
     * 修改用户
     * */
     @PutMapping("/api/short-link/admin/v1/user")
@@ -69,7 +69,7 @@ public class UserController {
         return Results.success();
     }
 
-    /*
+    /**
     * 用户登录
     * */
     @PostMapping("/api/short-link/admin/v1/user/login")
@@ -77,7 +77,7 @@ public class UserController {
         return Results.success(userService.login(requestParam));
     }
 
-    /*
+    /**
     * 检查用户是否登录
     * */
     @GetMapping("/api/short-link/admin/v1/user/check-login")
@@ -85,7 +85,7 @@ public class UserController {
         return Results.success(userService.checkLogin(username, token));
     }
 
-    /*
+    /**
     * 用户退出登录
     * */
     @DeleteMapping("/api/short-link/admin/v1/user/logout")

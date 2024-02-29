@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*
+/**
 * 访问日志监控持久层
 * */
 public interface LinkAccessLogsMapper extends BaseMapper<LinkAccessLogsDO> {

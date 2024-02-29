@@ -10,12 +10,12 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
-/*
+/**
 * 地区统计访问持久层
 * */
 public interface LinkLocateStatsMapper extends BaseMapper<LinkLocateStatsDO> {
 
-    /*
+    /**
      * 记录地区访问监控数据
      * */
     @Insert("INSERT INTO t_link_locate_stats (full_short_url, gid, date, cnt, country, province, city, adcode, create_time, update_time, del_flag)" +

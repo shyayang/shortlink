@@ -17,14 +17,18 @@ import com.nageoffer.shortlink.project.service.ShortLinkService;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-/*
-* 短链接控制层
-* */
+/**
+ * 短链接控制层
+ */
 @RestController
 @RequiredArgsConstructor
 public class ShortLinkController {
@@ -32,23 +36,23 @@ public class ShortLinkController {
     private final ShortLinkService shortLinkService;
 
     /**
-    * 短链接跳转原始链接
-    * */
+     * 短链接跳转原始链接
+     */
     @GetMapping("/{short-uri}")
-    public void restoreUrl(@PathVariable("short-uri") String shortUri, ServletRequest request, ServletResponse response){
+    public void restoreUrl(@PathVariable("short-uri") String shortUri, ServletRequest request, ServletResponse response) {
         shortLinkService.restoreUrl(shortUri, request, response);
     }
 
     /**
-    * 创建短链接
-    * */
+     * 创建短链接
+     */
     @PostMapping("/api/short-link/v1/create")
     @SentinelResource(
             value = "create_short-link",
             blockHandler = "createShortLinkBlockHandlerMethod",
             blockHandlerClass = CustomBlockHandler.class
     )
-    public Result<ShortLinkCreateRespDTO> createShortLink(@RequestBody ShortLinkCreateReqDTO requestParam){
+    public Result<ShortLinkCreateRespDTO> createShortLink(@RequestBody ShortLinkCreateReqDTO requestParam) {
         return Results.success(shortLinkService.createShortLink(requestParam));
     }
 
@@ -61,19 +65,19 @@ public class ShortLinkController {
     }
 
     /**
-    * 修改短链接
-    * */
+     * 修改短链接
+     */
     @PostMapping("/api/short-link/v1/update")
-    public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam){
+    public Result<Void> updateShortLink(@RequestBody ShortLinkUpdateReqDTO requestParam) {
         shortLinkService.updateShortLink(requestParam);
         return Results.success();
     }
 
     /**
-    * 分页查询短链接
+     * 分页查询短链接
      */
     @GetMapping("/api/short-link/v1/page")
-    public Result<IPage<ShortLinkPageRespDTO>> pageShortLink(ShortLinkPageReqDTO requestParam){
+    public Result<IPage<ShortLinkPageRespDTO>> pageShortLink(ShortLinkPageReqDTO requestParam) {
         return Results.success(shortLinkService.pageShortLink(requestParam));
     }
 
@@ -81,7 +85,7 @@ public class ShortLinkController {
      * 查询短链接分组内数量
      */
     @GetMapping("/api/short-link/v1/count")
-    public Result<List<ShortLinkGroupCountQueryRespDTO>> listGroupShortLinkCount(@RequestParam("requestParam") List<String> requestParam){
+    public Result<List<ShortLinkGroupCountQueryRespDTO>> listGroupShortLinkCount(@RequestParam("requestParam") List<String> requestParam) {
         return Results.success(shortLinkService.listGroupShortLinkCount(requestParam));
     }
 }

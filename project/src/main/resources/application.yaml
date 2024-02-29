@@ -2,6 +2,7 @@ server:
   port: 8001
 
 spring:
+  # nacos注册服务名（必须要写）
   application:
     name: short-link-project
   datasource:

@@ -9,22 +9,21 @@ import org.springframework.stereotype.Service;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-/*
- * URL标题接口实现层
- * */
+/**
+ * URL 标题接口实现层
+ */
 @Service
 public class UrlTitleServiceImpl implements UrlTitleService {
 
     @SneakyThrows
     @Override
     public String getTitleByUrl(String url) {
-
         URL targetUrl = new URL(url);
         HttpURLConnection connection = (HttpURLConnection) targetUrl.openConnection();
         connection.setRequestMethod("GET");
         connection.connect();
         int responseCode = connection.getResponseCode();
-        if(responseCode == HttpURLConnection.HTTP_OK) {
+        if (responseCode == HttpURLConnection.HTTP_OK) {
             Document document = Jsoup.connect(url).get();
             return document.title();
         }
